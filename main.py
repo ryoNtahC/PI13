@@ -2,22 +2,30 @@ import datetime
 
 class Osoba:
     # toto je konstruktor to innit
-    def __init__(self, meno_param, priezvisko_param, rok_param):
-        self.meno = meno_param
-        self.priezvisko = priezvisko_param
-        self.rok = rok_param
+    def __init__(self, meno, priezvisko, rok):
+        self.meno = meno
+        self.priezvisko = priezvisko
+        self.rok = rok
         self.vek = datetime.date.today().year - self.rok
 
-        # toto je metoda to pozdrav
+        # toto je metoda pozdrav
     def pozdrav(self):
         print("Ahoj, ja som", self.meno, self.priezvisko, "a mám", self.vek, "rokov.")
 
     def vypis_vek(self):
         print(self.vek)
 
-miso = Osoba("Stanislav", "Chabreček", 2006)
-miso.pozdrav()
-miso.vypis_vek()
-jano = Osoba("Janko","Hruška", 2000)
+class Ucitel(Osoba):
+    def __init__(self, meno, priezvisko, rok, titul, predmet):
+        Osoba.__init__(self, meno, priezvisko, rok)
+        self.titul = titul
+        self.predmet = predmet
+
+    def pozdrav(self):
+        print("Dobrý ďeň, som učiteľ",self.titul, self.meno, self.priezvisko, "a mám", self.vek, "rokov a učím predmet", self.predmet)
+
+
+jano = Osoba("Ján", "Jablko", 2004)
 jano.pozdrav()
-jano.vypis_vek()
+jozo = Ucitel("Jozef", "Hruška", 1995, "Ing.", "Programovanie")
+jozo.pozdrav()
