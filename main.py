@@ -1,6 +1,7 @@
 import datetime
 import random
 
+
 class Osoba:
     # toto je konstruktor to innit
     def __init__(self, meno, priezvisko, rok):
@@ -35,8 +36,10 @@ class Student(Osoba):
         print("Dobrý ďeň, som študent", self.meno, self.priezvisko, "a mám", self.vek, "rokov a som žiakom triedy", self.trieda)
 
 
-pocet_studentov = 10
+pocet_studentov = 50
 pocet_ucitelov = 5
+
+
 
 studenti = list()
 for i in range(pocet_studentov):
@@ -63,10 +66,10 @@ for i in range(pocet_studentov):
     trieda = trieda + random.choice(("A", "B", "C"))
 
     studenti.append(Student(meno,priezvisko, rok, trieda))
+    studenti.sort(key=lambda studenti: studenti.priezvisko, reverse=False)
 print("Študenti:")
 for i in range(pocet_studentov):
     print(i, studenti[i].meno, studenti[i].priezvisko, studenti[i].vek, studenti[i].rok, studenti[i].trieda)
-studenti[1].pozdrav()
 
 print("==============================\n")
 
@@ -93,7 +96,28 @@ for i in range(pocet_ucitelov):
     predmet = random.choice(("Programovanie","Telesná Výchova", "Matematika"))
 
     ucitelia.append(Ucitel(meno,priezvisko, rok, titul, predmet, trieda))
+    ucitelia.sort(key=lambda ucitelia: ucitelia.priezvisko, reverse=False)
 print("Učitelia:")
 for i in range(pocet_ucitelov):
     print(i, ucitelia[i].meno, ucitelia[i].priezvisko, ucitelia[i].vek, ucitelia[i].rok,ucitelia[i].titul,ucitelia[i].predmet ,ucitelia[i].trieda)
 ucitelia[1].pozdrav()
+
+
+
+while(True):
+    anoj = input("Zadaj ID učiteľa: ")
+
+    for i in range(pocet_studentov):
+        if anoj == "stop":
+            exit()
+        elif studenti[i].trieda == ucitelia[int(anoj)].trieda:
+            print(studenti[i].meno, studenti[i].priezvisko)
+
+
+    anoi = input("Zadaj ID ziaka: ")
+
+    for y in range(pocet_ucitelov):
+        if anoi == "stop":
+            exit()
+        elif ucitelia[y].trieda == studenti[int(anoi)].trieda:
+            print(ucitelia[y].titul, ucitelia[y].meno, ucitelia[y].priezvisko)
