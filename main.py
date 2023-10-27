@@ -103,7 +103,6 @@ for i in range(pocet_ucitelov):
 ucitelia[1].pozdrav()
 
 
-
 while(True):
     anoj = input("Zadaj ID učiteľa: ")
 
